@@ -10,9 +10,6 @@ pipeline {
                 }
             }
         }
-    }
-    
-    stages {
         stage('Verify Deployments') {
             steps {
                 withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'EKS-11microsvcs', contextName: '', credentialsId: 'k8s-token', namespace: 'webapps', serverUrl: 'https://A62534EEE33EFFAD3850037C3B497546.gr7.ap-south-1.eks.amazonaws.com']]) {
