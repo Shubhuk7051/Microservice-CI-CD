@@ -6,14 +6,14 @@ pipeline {
             steps {
                 withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'EKS-11microsvcs', contextName: '', credentialsId: 'k8s-token', namespace: 'webapps', serverUrl: 'https://A62534EEE33EFFAD3850037C3B497546.gr7.ap-south-1.eks.amazonaws.com']]) {
                     sh "kubectl apply -f deployment-service.yml"
-                    sleep 60
+                    sleep 10
                 }
             }
         }
         stage('Verify Deployments') {
             steps {
                 withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'EKS-11microsvcs', contextName: '', credentialsId: 'k8s-token', namespace: 'webapps', serverUrl: 'https://A62534EEE33EFFAD3850037C3B497546.gr7.ap-south-1.eks.amazonaws.com']]) {
-                    sh "kubectl get all -n webapps"
+                    sh "kubectl get svc -n webapps"
                 }
             }
         }
